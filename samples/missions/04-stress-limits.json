@@ -1,0 +1,42 @@
+{
+  "sample": "04 · Stress-limits mission (maximum criteria, long windows)",
+  "cost": "0.001 GEN reward only — sponsor can cancel before any candidate arrives",
+  "purpose": "Form validation and plate rendering at the protocol caps: 8 criteria (the maximum), long texts, 30-day window, 24-hour challenge window. Also perfect for the cancel-drill: cancel_mission only works while untouched.",
+  "openMissionForm": {
+    "Mission title": "Stress plate: full-capacity work order for renderer and validation checks",
+    "Repository URL": "https://github.com/octocat/Hello-World",
+    "Defect / issue URL": "https://github.com/octocat/Hello-World/pull/6",
+    "Frozen base commit": "762941318ee16e59dabbacb1b4049eec22f0d303",
+    "Target branch": "master",
+    "Problem statement": "This work order exists to exercise the protocol at its documented limits: the maximum number of frozen criteria, representative long-form policy text, the longest mission window and the longest challenge window. It carries the minimum escrow because its only purpose is to prove that plates render, validation accepts the caps, and the sponsor refund path works while a mission is untouched. Do not submit candidates unless you are explicitly rehearsing a rejection.",
+    "criteria": [
+      { "id": "C1", "text": "Criterion one renders in order on the mission plate.", "evidence_hint": "visual" },
+      { "id": "C2", "text": "Criterion two renders in order on the mission plate.", "evidence_hint": "visual" },
+      { "id": "C3", "text": "Criterion three renders in order on the mission plate.", "evidence_hint": "visual" },
+      { "id": "C4", "text": "Criterion four renders in order on the mission plate.", "evidence_hint": "visual" },
+      { "id": "C5", "text": "Criterion five renders in order on the mission plate.", "evidence_hint": "visual" },
+      { "id": "C6", "text": "Criterion six renders in order on the mission plate.", "evidence_hint": "visual" },
+      { "id": "C7", "text": "Criterion seven renders in order on the mission plate.", "evidence_hint": "visual" },
+      { "id": "C8", "text": "Criterion eight renders in order on the mission plate.", "evidence_hint": "visual" }
+    ],
+    "Scope policy": "Any repository path is acceptable for this stress plate; the scope itself is part of the rendering exercise and intentionally generous.",
+    "Forbidden changes": "Nothing is forbidden on this stress plate.",
+    "Evidence policy": "Any public HTTPS page may serve as evidence on this stress plate; uniqueness of URLs still applies.",
+    "Reward · GEN": "0.001",
+    "Closes in": "30 days",
+    "Challenge window": "24 hours",
+    "CI evidence": "Optional"
+  },
+  "cancelDrill": {
+    "step1": "Open the mission with account A (sponsor).",
+    "step2": "With account B connected, notice there is no cancel control — only the sponsor can cancel.",
+    "step3": "Switch back to account A and call cancel_mission from a script (see samples/README.md §7) — the plate flips to Cancelled and 0.001 GEN becomes withdrawable credit.",
+    "step4": "Withdraw credit in the Workbench. Negative check: after ANY candidate commits, cancel_mission reverts — the escrow belongs to the market now."
+  },
+  "validationDrill": {
+    "tooManyCriteria": "Adding a 9th row must stay impossible in the form (the contract caps criteria at 8).",
+    "badSha": "Paste a 39-char base SHA → the client blocks before signing; fix length and it proceeds.",
+    "badReward": "Reward 0.0005 GEN → blocked (minimum 0.001).",
+    "windowTooShort": "A deadline under 1 hour is rejected by the contract; the closest safe pick is 6 hours in the samples."
+  }
+}

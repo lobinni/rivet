@@ -1,0 +1,37 @@
+{
+  "sample": "01 · Hello-World drill (cheapest possible live run)",
+  "cost": "0.001 GEN reward + 0.0001 GEN candidate bond",
+  "purpose": "Exercise the full pipeline on REAL public evidence for almost no money. The octocat/Hello-World change is real: commit 7fd1a60 descends from 7629413 and adds a trailing newline.",
+  "openMissionForm": {
+    "Mission title": "Hello-World drill: ship the trailing newline",
+    "Repository URL": "https://github.com/octocat/Hello-World",
+    "Defect / issue URL": "https://github.com/octocat/Hello-World/pull/6",
+    "Frozen base commit": "762941318ee16e59dabbacb1b4049eec22f0d303",
+    "Target branch": "master",
+    "Problem statement": "The README of the frozen base ends abruptly without a trailing newline, which breaks concatenation into other documents. Repair it with a minimal patch and prove the change on the public repository.",
+    "criteria": [
+      { "id": "C1", "text": "After the patch, the README file ends with a trailing newline.", "evidence_hint": "diff of the candidate commit" },
+      { "id": "C2", "text": "The patch changes only the README file and nothing else.", "evidence_hint": "diff of the candidate commit" }
+    ],
+    "Scope policy": "Only the README file may change.",
+    "Forbidden changes": "No new files, no deletions, no binary assets.",
+    "Evidence policy": "Use only pages under github.com/octocat/Hello-World: the exact commit page and its .diff.",
+    "Reward · GEN": "0.001",
+    "Closes in": "6 hours",
+    "Challenge window": "15 minutes",
+    "CI evidence": "Optional"
+  },
+  "commitPanel": {
+    "Candidate commit SHA": "7fd1a60b01f91b314f59955a4e4d4e80d8edf11d",
+    "evidence": [
+      { "kind": "COMMIT", "url": "https://github.com/octocat/Hello-World/commit/7fd1a60b01f91b314f59955a4e4d4e80d8edf11d", "note": "exact candidate commit on the public host" },
+      { "kind": "DIFF", "url": "https://github.com/octocat/Hello-World/commit/7fd1a60b01f91b314f59955a4e4d4e80d8edf11d.diff", "note": "patch against the frozen base" }
+    ]
+  },
+  "expectedFlow": {
+    "artifactExamination": "Likely ARTIFACT_VERIFIED — ancestry, SHA binding and diff are all real and fetchable.",
+    "criterionReview": "Honest judgment: the real diff only touches the README and adds the newline, so QUALIFIED is the healthy outcome; INCONCLUSIVE is also acceptable and refunds the bond.",
+    "finalize": "If QUALIFIED: wait the 15-minute challenge window, finalize, then withdraw ~0.0011 GEN in the Workbench.",
+    "ifRejected": "A REJECTED verdict is a judge-call on a drill; the 0.0001 GEN bond goes to the sponsor — that is the entire stake."
+  }
+}

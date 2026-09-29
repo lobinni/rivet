@@ -1,0 +1,38 @@
+{
+  "sample": "03 · CI-required mission (evidence bundle must include a finished Actions run)",
+  "cost": "0.02 GEN reward + 0.0002 GEN bond",
+  "purpose": "Same lifecycle as sample 02, but the sponsor froze CI evidence in — the bundle without a CI kind is refused client-side and on-chain, and examination returns NOT_READY while the run is still in progress.",
+  "openMissionForm": {
+    "Mission title": "Repair multiline CSV parsing (CI-gated)",
+    "Repository URL": "https://github.com/<YOU>/rivet-fixture",
+    "Defect / issue URL": "https://github.com/<YOU>/rivet-fixture/issues/1",
+    "Frozen base commit": "<base SHA from samples/fixture-repo.md>",
+    "Target branch": "main",
+    "Problem statement": "CSV exports corrupt quoted fields containing embedded newlines. Repair parsing so embedded LF and CRLF round-trip losslessly; the official CI for the exact candidate SHA must be green.",
+    "criteria": [
+      { "id": "C1", "text": "Quoted CSV fields containing LF round-trip without data loss.", "evidence_hint": "diff + regression test" },
+      { "id": "C2", "text": "Quoted CSV fields containing CRLF round-trip without data loss.", "evidence_hint": "diff + regression test" },
+      { "id": "C3", "text": "The repository Actions run for the candidate SHA completed successfully.", "evidence_hint": "Actions run page" }
+    ],
+    "Scope policy": "Changes may touch src/csv/**, tests/csv/** and .github/workflows/** only.",
+    "Forbidden changes": "No dependency replacement, no public API removal, no unrelated refactoring.",
+    "Evidence policy": "Commit page + .diff of the candidate, plus the GitHub Actions run page bound to the exact candidate SHA.",
+    "Reward · GEN": "0.02",
+    "Closes in": "24 hours",
+    "Challenge window": "30 minutes",
+    "CI evidence": "Required"
+  },
+  "commitPanel": {
+    "Candidate commit SHA": "<fix SHA with a passing Actions run>",
+    "evidence": [
+      { "kind": "COMMIT", "url": "https://github.com/<YOU>/rivet-fixture/commit/<fix SHA>", "note": "exact candidate commit" },
+      { "kind": "DIFF", "url": "https://github.com/<YOU>/rivet-fixture/commit/<fix SHA>.diff", "note": "patch against the frozen base" },
+      { "kind": "CI", "url": "https://github.com/<YOU>/rivet-fixture/actions/runs/<run id>", "note": "Actions run completed green for the exact candidate SHA" }
+    ],
+    "negativeDrill": "Remove the CI row and press Commit → the client stops you before any signature. Then commit while the run is orange: examination should return NOT_READY and refund the bond; re-commit after the run goes green."
+  },
+  "expectedFlow": {
+    "artifactExamination": "VERIFIED only when the run page shows completion; otherwise NOT_READY with a bond refund.",
+    "criterionReview": "QUALIFIED requires C3's CI proof in addition to the code criteria."
+  }
+}

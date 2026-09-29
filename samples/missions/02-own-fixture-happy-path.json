@@ -1,0 +1,46 @@
+{
+  "sample": "02 · Own-fixture happy path (full lifecycle incl. finalize + withdraw)",
+  "cost": "0.02 GEN reward (returned to winner) + 0.0002 GEN bond (returned)",
+  "purpose": "End-to-end pass on a throwaway repository you control, built in samples/fixture-repo.md. Replace every <YOU> placeholder after following that guide.",
+  "openMissionForm": {
+    "Mission title": "Repair multiline CSV parsing",
+    "Repository URL": "https://github.com/<YOU>/rivet-fixture",
+    "Defect / issue URL": "https://github.com/<YOU>/rivet-fixture/issues/1",
+    "Frozen base commit": "<base SHA from samples/fixture-repo.md>",
+    "Target branch": "main",
+    "Problem statement": "CSV exports corrupt quoted fields that contain embedded newlines: parsing them back loses rows. Repair the parser so embedded LF and CRLF round-trip losslessly without changing the public API.",
+    "criteria": [
+      { "id": "C1", "text": "Quoted CSV fields containing LF round-trip without data loss.", "evidence_hint": "diff + the new regression test" },
+      { "id": "C2", "text": "Quoted CSV fields containing CRLF round-trip without data loss.", "evidence_hint": "diff + the Windows regression test" },
+      { "id": "C3", "text": "The public parser function signatures are unchanged.", "evidence_hint": "diff shows no signature edits" }
+    ],
+    "Scope policy": "Changes may touch src/csv/** and tests/csv/** only.",
+    "Forbidden changes": "No dependency replacement, no public API removal, no unrelated refactoring.",
+    "Evidence policy": "Only pages under github.com/<YOU>/rivet-fixture count: the candidate commit page and its .diff; CI is not frozen in.",
+    "Reward · GEN": "0.02",
+    "Closes in": "24 hours",
+    "Challenge window": "30 minutes",
+    "CI evidence": "Optional"
+  },
+  "commitPanel": {
+    "Candidate commit SHA": "<fix SHA from samples/fixture-repo.md>",
+    "evidence": [
+      { "kind": "COMMIT", "url": "https://github.com/<YOU>/rivet-fixture/commit/<fix SHA>", "note": "exact candidate commit" },
+      { "kind": "DIFF", "url": "https://github.com/<YOU>/rivet-fixture/commit/<fix SHA>.diff", "note": "patch against the frozen base" },
+      { "kind": "ISSUE", "url": "https://github.com/<YOU>/rivet-fixture/issues/1", "note": "the public defect report this patch answers" }
+    ]
+  },
+  "challengePanel": {
+    "when": "only while the candidate sits in QUALIFIED_PENDING (30-minute window), from a third account",
+    "Criterion": "C2",
+    "Regression evidence URL": "https://github.com/<YOU>/rivet-fixture/commit/<regression-note SHA>",
+    "Claim": "A follow-up commit on the same branch shows CRLF handling still fails for empty quoted fields, so criterion C2 is not actually satisfied by the candidate.",
+    "expect": "The judge compares claims against fetched pages. An honest INCONCLUSIVE refunds your bond; a forced UPHELD requires genuinely defeating evidence."
+  },
+  "expectedFlow": {
+    "artifactExamination": "ARTIFACT_VERIFIED on a correctly built fixture.",
+    "criterionReview": "QUALIFIED when the patch really fixes LF+CRLF and touches only allowed paths.",
+    "finalize": "After the 30-minute window: finalize_submission issues the certificate and credits the winner; verify in #/certificates.",
+    "withdraw": "Workbench shows ~0.0202 GEN claimable; withdraw returns it to your wallet."
+  }
+}

@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.venv/
+__pycache__/
+.pytest_cache/
+.env.local
+deployments/pending.json
+release-evidence/
+.DS_Store

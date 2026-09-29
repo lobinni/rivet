@@ -1,0 +1,18 @@
+{
+  "product": "Rivet",
+  "network": "studionet",
+  "chainId": 61999,
+  "rpc": "https://studio.genlayer.com/api",
+  "explorer": "https://explorer-studio.genlayer.com",
+  "status": "live",
+  "deployedAt": null,
+  "verifiedAt": "2026-09-29T07:40:07Z",
+  "sourceSha256": "aee892330f604561d96c6eaa2503ced53f10eec69e0f95e52e3e92ff114ab141",
+  "sourceVerified": true,
+  "schemaVerified": true,
+  "lineEndingNote": "Deployed bytes carry CRLF line endings; content matches contracts/rivet.py after normalization. scripts/verify-deployment.mjs performs the exact check.",
+  "contract": {
+    "address": "0x610a3787effC958d3693ad9f747c3a8896540844",
+    "txHash": ""
+  }
+}
